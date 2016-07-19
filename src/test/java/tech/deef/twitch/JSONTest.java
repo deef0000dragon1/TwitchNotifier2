@@ -1,6 +1,7 @@
 package tech.deef.twitch;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,69 +10,26 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.junit.Test;
+
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.junit.Test;
 
 public class JSONTest {
 
 	@Test
 	public void testCallAPI() {
 
-		URL url;
-		InputStream inpusStream = null;
-		BufferedReader bufferedReader;
-		String data = null;
-
-		try {
-			url = new URL("https://api.twitch.tv/kraken/users/deef0000dragon1/follows/channels");
-			inpusStream = url.openStream(); // throws an IOException
-			bufferedReader = new BufferedReader(new InputStreamReader(inpusStream));
-
-			data = bufferedReader.readLine();
-		} catch (MalformedURLException mue) {
-			mue.printStackTrace();
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		} finally {
-			try {
-				if (inpusStream != null)
-					inpusStream.close();
-			} catch (IOException ioe) {
-				// nothing to see here
-			}
-		}
-		assertNotNull(data);
+		
+		assertNotNull(FetchRawJSON.fetchJSON("https://api.twitch.tv/kraken/users/deef0000dragon1/follows/channels"));
 	}
 
 	@Test
 	public void testDeserialization() {
-		URL url;
-		InputStream inpusStream = null;
-		BufferedReader bufferedReader;
-		String data = null;
-
-		try {
-			url = new URL("https://api.twitch.tv/kraken/users/deef0000dragon1/follows/channels");
-			inpusStream = url.openStream(); // throws an IOException
-			bufferedReader = new BufferedReader(new InputStreamReader(inpusStream));
-
-			data = bufferedReader.readLine();
-		} catch (MalformedURLException mue) {
-			mue.printStackTrace();
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		} finally {
-			try {
-				if (inpusStream != null)
-					inpusStream.close();
-			} catch (IOException ioe) {
-				// nothing to see here
-			}
-		}
 		
+		String data = FetchRawJSON.fetchJSON("https://api.twitch.tv/kraken/users/deef0000dragon1/follows/channels");
+
 		
 		ObjectMapper mapper = new ObjectMapper();
 		UserFollowsChannels ufc = null;
