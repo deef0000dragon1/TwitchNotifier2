@@ -30,8 +30,8 @@ public class JSONTest {
 	@Test
 	public void testDeserialization() {
 		
-		String data = FetchRawJSON.fetchJSON("https://api.twitch.tv/kraken/users/deef0000dragon1/follows/channels");
-
+		File file = new File("Files/TestFiles/JSONTest Json");
+		String data = FetchRawJSON.fetchJSON(file);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		UserFollowsChannels ufc = null;
