@@ -3,12 +3,8 @@ package tech.deef.twitch;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import org.junit.Test;
 
@@ -20,9 +16,15 @@ public class JSONTest {
 
 	@Test
 	public void testCallAPI() {
-
-		
-		assertNotNull(FetchRawJSON.fetchJSON("https://api.twitch.tv/kraken/users/deef0000dragon1/follows/channels"));
+		String data = FetchRawJSON.fetchJSON("https://api.twitch.tv/kraken/users/deef0000dragon1/follows/channels");
+		assertNotNull(data);
+	}
+	
+	@Test
+	public void testCallAPIFile() {
+		File file = new File("Files/TestFiles/JSONTest Json");
+		String data = FetchRawJSON.fetchJSON(file);
+		assertNotNull(data);
 	}
 
 	@Test
