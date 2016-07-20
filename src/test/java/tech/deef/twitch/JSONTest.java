@@ -49,4 +49,32 @@ public class JSONTest {
 		assertEquals(48, ufc.getTotal());
 
 	}
+	
+	@Test
+	public void testDeserializationArray() {
+
+		File file = new File("Files/TestFiles/JSONTest Json");
+		String data = FetchRawJSON.fetchJSON(file);
+
+		ObjectMapper mapper = new ObjectMapper();
+		UserFollowsChannels ufc = null;
+
+		try {
+			ufc = mapper.readValue(data, UserFollowsChannels.class);
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		for(Followed f: ufc.getFollows()){
+			System.out.println(f.getChannel().getDisplayName());
+		}
+		
+		assertEquals("AlexSavageOMFG",ufc.getFollows().get(0).getChannel().getDisplayName());
+		
+		
+	}
 }

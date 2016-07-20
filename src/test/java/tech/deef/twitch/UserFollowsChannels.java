@@ -17,6 +17,8 @@ public class UserFollowsChannels {
 	@JsonProperty("follows")
 	private ArrayList<Followed> follows;
 
+	
+	
 	public int getTotal() {
 		return total;
 	}
