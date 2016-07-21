@@ -1,4 +1,4 @@
-package tech.deef.twitch;
+package tech.deef.twitch.external;
 
 import static org.junit.Assert.*;
 
