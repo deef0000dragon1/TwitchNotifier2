@@ -12,6 +12,8 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import tech.deef.twitch.domain.UserFollowsChannels;
+
 public class JSONTest {
 
 	@Test

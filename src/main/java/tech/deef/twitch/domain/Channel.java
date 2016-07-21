@@ -1,4 +1,4 @@
-package tech.deef.twitch;
+package tech.deef.twitch.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

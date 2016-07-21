@@ -1,6 +1,6 @@
-package tech.deef.twitch;
+package tech.deef.twitch.domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,10 +15,8 @@ public class UserFollowsChannels {
 	private Links links;
 
 	@JsonProperty("follows")
-	private ArrayList<Followed> follows;
+	private List<Followed> follows;
 
-	
-	
 	public int getTotal() {
 		return total;
 	}
@@ -27,7 +25,7 @@ public class UserFollowsChannels {
 		return links;
 	}
 
-	public ArrayList<Followed> getFollows() {
+	public List<Followed> getFollows() {
 		return follows;
 	}
 
@@ -39,9 +37,8 @@ public class UserFollowsChannels {
 		this.links = links;
 	}
 
-	public void setFollows(ArrayList<Followed> follows) {
+	public void setFollows(List<Followed> follows) {
 		this.follows = follows;
 	}
-	
-	
+
 }
