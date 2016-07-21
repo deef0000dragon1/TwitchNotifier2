@@ -122,4 +122,5 @@ public class JSONTest {
 		assertEquals("Soaryn",ufc.getFollows().get(46).getChannel().getDisplayName());
 		assertEquals("jadedcat",ufc.getFollows().get(47).getChannel().getDisplayName());
 	}
+
 }
