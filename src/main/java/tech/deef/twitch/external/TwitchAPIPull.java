@@ -34,8 +34,7 @@ public class TwitchAPIPull implements TwitchAPI {
 	}
 
 	public StreamsUser getStreamsUser(String user) {
-		String link = "https://api.twitch.tv/kraken/users/" + user
-				+ "/follows/channels?direction=DESC&limit=50&offset=0&sortby=created_a";
+		String link = "https://api.twitch.tv/kraken/streams/" + user;
 		DataPull puller = new DataPuller();
 		String data = puller.PullData(link);
 
@@ -55,8 +54,7 @@ public class TwitchAPIPull implements TwitchAPI {
 	}
 
 	public ChannelsUser getChannelsUser(String user) {
-		String link = "https://api.twitch.tv/kraken/users/" + user
-				+ "/follows/channels?direction=DESC&limit=50&offset=0&sortby=created_a";
+		String link = "https://api.twitch.tv/kraken/channels/" + user;
 		DataPull puller = new DataPuller();
 		String data = puller.PullData(link);
 
