@@ -11,38 +11,18 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import tech.deef.twitch.domain.ChannelsUser;
+import tech.deef.twitch.domain.StreamsUser;
 import tech.deef.twitch.domain.UserFollowsChannels;
 
 public class TwitchAPIPull implements TwitchAPI {
 
 	public UserFollowsChannels getUserFollowsChannels(String user) {
-		
-		
-		URL url;
-		InputStream inputStream = null;
-		BufferedReader bufferedReader;
-		String data = null;
-		String link = "https://api.twitch.tv/kraken/users/" + user + "/follows/channels?direction=DESC&limit=50&offset=0&sortby=created_a";
+		String link = "https://api.twitch.tv/kraken/users/" + user
+				+ "/follows/channels?direction=DESC&limit=50&offset=0&sortby=created_a";
+		DataPull puller = new DataPuller();
+		String data = puller.PullData(link);
 
-		try {
-			url = new URL(link);
-			inputStream = url.openStream(); // throws an IOException
-			bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-			data = bufferedReader.readLine();
-		} catch (MalformedURLException mue) {
-			mue.printStackTrace();
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		} finally {
-			try {
-				if (inputStream != null)
-					inputStream.close();
-			} catch (IOException ioe) {
-				// nothing to see here
-			}
-		}
-		
 		ObjectMapper mapper = new ObjectMapper();
 		UserFollowsChannels ufc = null;
 
@@ -56,6 +36,48 @@ public class TwitchAPIPull implements TwitchAPI {
 			e.printStackTrace();
 		}
 		return ufc;
+	}
+
+	public StreamsUser getStreamsUser(String user) {
+		String link = "https://api.twitch.tv/kraken/users/" + user
+				+ "/follows/channels?direction=DESC&limit=50&offset=0&sortby=created_a";
+		DataPull puller = new DataPuller();
+		String data = puller.PullData(link);
+
+		ObjectMapper mapper = new ObjectMapper();
+		StreamsUser su = null;
+
+		try {
+			su = mapper.readValue(data, StreamsUser.class);
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return su;
+	}
+
+	public ChannelsUser getChannelsUser(String user) {
+		String link = "https://api.twitch.tv/kraken/users/" + user
+				+ "/follows/channels?direction=DESC&limit=50&offset=0&sortby=created_a";
+		DataPull puller = new DataPuller();
+		String data = puller.PullData(link);
+
+		ObjectMapper mapper = new ObjectMapper();
+		ChannelsUser cu = null;
+
+		try {
+			cu = mapper.readValue(data, ChannelsUser.class);
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return cu;
 	}
 
 }
