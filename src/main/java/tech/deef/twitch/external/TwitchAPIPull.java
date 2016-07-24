@@ -15,54 +15,29 @@ public class TwitchAPIPull implements TwitchAPI {
 	public UserFollowsChannels getUserFollowsChannels(String user) {
 		String link = "https://api.twitch.tv/kraken/users/" + user
 				+ "/follows/channels?direction=DESC&limit=50&offset=0&sortby=created_a";
-		DataPull puller = new DataPuller();
-		String data = puller.PullData(link);
-
-		ObjectMapper mapper = new ObjectMapper();
-		UserFollowsChannels ufc = null;
-
-		try {
-			ufc = mapper.readValue(data, UserFollowsChannels.class);
-		} catch (JsonParseException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return ufc;
+		return (UserFollowsChannels) getPOJO(link, UserFollowsChannels.class);
 	}
 
 	public StreamsUser getStreamsUser(String user) {
 		String link = "https://api.twitch.tv/kraken/streams/" + user;
-		DataPull puller = new DataPuller();
-		String data = puller.PullData(link);
-
-		ObjectMapper mapper = new ObjectMapper();
-		StreamsUser su = null;
-
-		try {
-			su = mapper.readValue(data, StreamsUser.class);
-		} catch (JsonParseException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return su;
+		return (StreamsUser) getPOJO(link, StreamsUser.class);
 	}
 
 	public ChannelsUser getChannelsUser(String user) {
 		String link = "https://api.twitch.tv/kraken/channels/" + user;
+		return (ChannelsUser) getPOJO(link, ChannelsUser.class);
+	}
+
+	private Object getPOJO(String link, Class c) {
+
 		DataPull puller = new DataPuller();
 		String data = puller.PullData(link);
 
 		ObjectMapper mapper = new ObjectMapper();
-		ChannelsUser cu = null;
+		Object obj = null;
 
 		try {
-			cu = mapper.readValue(data, ChannelsUser.class);
+			obj = mapper.readValue(data, c);
 		} catch (JsonParseException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
@@ -70,7 +45,8 @@ public class TwitchAPIPull implements TwitchAPI {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return cu;
+		return obj;
+
 	}
 
 }

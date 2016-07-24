@@ -50,15 +50,16 @@ public class TwitchAPIPullTest {
 	
 	@Test
 	public void testGetStreamsUser() {
+		String TestChannel = "BobRoss";
 		
 		//WARNING This test must be tuned to the information current avaliable
 		//as such, the user in question may or may note be live. 
 		TwitchAPIPull pull = new TwitchAPIPull();
-		StreamsUser su = pull.getStreamsUser("gsl");
+		StreamsUser su = pull.getStreamsUser(TestChannel);
 		assertNotNull(su);
 		
 		assertNotNull(su.getStream());
-		assertEquals("GSL", su.getStream().getChannel().getDisplayName());
+		assertEquals(TestChannel, su.getStream().getChannel().getDisplayName());
 		
 		
 	}
