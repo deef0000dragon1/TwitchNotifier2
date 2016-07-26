@@ -14,8 +14,13 @@ public class TwitchAPIPull implements TwitchAPI {
 
 	public UserFollowsChannels getUserFollowsChannels(String user) {
 		String link = "https://api.twitch.tv/kraken/users/" + user
-				+ "/follows/channels?direction=DESC&limit=50&offset=0&sortby=created_a";
+				+ "/follows/channels?direction=DESC&limit=5&offset=0&sortby=created_a";
+		UserFollowsChannels ufc = (UserFollowsChannels) getPOJO(link, UserFollowsChannels.class);
+		int channels = ufc.getTotal();
+		link = "https://api.twitch.tv/kraken/users/" + user
+				+ "/follows/channels?direction=DESC&limit=" + channels +"&offset=0&sortby=created_a";
 		return (UserFollowsChannels) getPOJO(link, UserFollowsChannels.class);
+		
 	}
 
 	public StreamsUser getStreamsUser(String user) {
