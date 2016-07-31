@@ -15,34 +15,34 @@ public class TwitchAPIPull implements TwitchAPI {
 	public UserFollowsChannels getUserFollowsChannels(String user) {
 		String link = "https://api.twitch.tv/kraken/users/" + user
 				+ "/follows/channels?direction=DESC&limit=5&offset=0&sortby=created_a";
-		UserFollowsChannels ufc = (UserFollowsChannels) getPOJO(link, UserFollowsChannels.class);
+		UserFollowsChannels ufc = this.<UserFollowsChannels>getPOJO(link, UserFollowsChannels.class);
 		int channels = ufc.getTotal();
 		link = "https://api.twitch.tv/kraken/users/" + user
 				+ "/follows/channels?direction=DESC&limit=" + channels +"&offset=0&sortby=created_a";
-		return (UserFollowsChannels) getPOJO(link, UserFollowsChannels.class);
+		return this.<UserFollowsChannels>getPOJO(link, UserFollowsChannels.class);
 		
 	}
 
 	public StreamsUser getStreamsUser(String user) {
 		String link = "https://api.twitch.tv/kraken/streams/" + user;
-		return (StreamsUser) getPOJO(link, StreamsUser.class);
+		return this.<StreamsUser>getPOJO(link, StreamsUser.class);
 	}
 
 	public ChannelsUser getChannelsUser(String user) {
 		String link = "https://api.twitch.tv/kraken/channels/" + user;
-		return (ChannelsUser) getPOJO(link, ChannelsUser.class);
+		return this.<ChannelsUser>getPOJO(link, ChannelsUser.class);
 	}
 
-	private Object getPOJO(String link, Class c) {
+	private <T> T getPOJO(String link, Class c) {
 
 		DataPull puller = new DataPuller();
 		String data = puller.PullData(link);
 
 		ObjectMapper mapper = new ObjectMapper();
-		Object obj = null;
+		T obj = null;
 
 		try {
-			obj = mapper.readValue(data, c);
+			obj = (T) mapper.readValue(data, c);
 		} catch (JsonParseException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
