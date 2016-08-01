@@ -12,6 +12,14 @@ import tech.deef.twitch.domain.UserFollowsChannels;
 
 public class TwitchAPIPull implements TwitchAPI {
 
+	private DataPull puller = null;
+	
+	public TwitchAPIPull(DataPull puller){
+		this.puller = puller;
+	}
+	
+	
+
 	public UserFollowsChannels getUserFollowsChannels(String user) {
 		String link = "https://api.twitch.tv/kraken/users/" + user
 				+ "/follows/channels?direction=DESC&limit=5&offset=0&sortby=created_a";
@@ -35,7 +43,6 @@ public class TwitchAPIPull implements TwitchAPI {
 
 	private <T> T getPOJO(String link, Class c) {
 
-		DataPull puller = new DataPuller();
 		String data = puller.PullData(link);
 
 		ObjectMapper mapper = new ObjectMapper();
