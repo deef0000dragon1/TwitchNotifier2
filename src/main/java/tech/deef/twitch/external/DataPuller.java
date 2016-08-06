@@ -18,6 +18,7 @@ public class DataPuller implements DataPull{
 		
 		try {
 			url = new URL(link);
+			
 			inputStream = url.openStream(); // throws an IOException
 			bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 

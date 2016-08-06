@@ -10,7 +10,9 @@ import tech.deef.twitch.domain.UserFollowsChannels;
 import tech.deef.twitch.external.TwitchAPIPull;
 
 public class TwitchAPIPullTest {
-
+	
+	//api key location https://www.twitch.tv/settings/connections
+	
 	@Test
 	public void testGetUserFollowsChannels() {
 		DataPull local = new LocalPuller();
