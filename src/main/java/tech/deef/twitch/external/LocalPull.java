@@ -17,7 +17,7 @@ public class LocalPull implements DataPull {
 			location = "files/TestFiles/StreamsUserOffline.json";
 		} else if (input.contains("kraken/channels/")) {
 			location = "files/TestFiles/ChannelsUser.json";
-		} else if (input.contains("https://api.twitch.tv/kraken/streams/Soaryn")) {
+		} else if (input.contains("https://api.twitch.tv/kraken/streams/BobRoss")) {
 			location = "files/TestFiles/StreamsUserOnline.json";
 		}
 

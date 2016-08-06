@@ -47,7 +47,7 @@ public class TwitchAPIPullTest {
 
 	@Test
 	public void testGetStreamsUser() {
-		String TestChannel = "Soaryn";
+		String TestChannel = "BobRoss";
 
 		// WARNING This test must be tuned to the information current avaliable
 		// as such, the user in question may or may note be live.
