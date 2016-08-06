@@ -13,7 +13,7 @@ public class TwitchAPIPullTest {
 
 	@Test
 	public void testGetUserFollowsChannels() {
-		DataPull local = new LocalPull();
+		DataPull local = new LocalPuller();
 		TwitchAPI pull = new TwitchAPIPull(local);
 		UserFollowsChannels ufc = pull.getUserFollowsChannels("deef0000dragon1");
 		assertNotNull(ufc);
@@ -25,7 +25,7 @@ public class TwitchAPIPullTest {
 
 	@Test
 	public void testGetChannelsUser() {
-		DataPull local = new LocalPull();
+		DataPull local = new LocalPuller();
 		TwitchAPI pull = new TwitchAPIPull(local);
 		ChannelsUser cu = pull.getChannelsUser("deef0000dragon1");
 		assertNotNull(cu);
@@ -36,7 +36,7 @@ public class TwitchAPIPullTest {
 
 	@Test
 	public void testGetStreamsUserNull() {
-		DataPull local = new LocalPull();
+		DataPull local = new LocalPuller();
 		TwitchAPI pull = new TwitchAPIPull(local);
 		StreamsUser su = pull.getStreamsUser("Deef0000dragon1");
 		// tests I can pull user info
@@ -51,7 +51,7 @@ public class TwitchAPIPullTest {
 
 		// WARNING This test must be tuned to the information current avaliable
 		// as such, the user in question may or may note be live.
-		DataPull local = new LocalPull();
+		DataPull local = new LocalPuller();
 		TwitchAPI pull = new TwitchAPIPull(local);
 		StreamsUser su = pull.getStreamsUser(TestChannel);
 		assertNotNull(su);

@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class LocalPull implements DataPull {
+public class LocalPuller implements DataPull {
 
 	public String PullData(String input) {
 
