@@ -17,8 +17,6 @@ public class TwitchAPIPull implements TwitchAPI {
 	public TwitchAPIPull(DataPull puller){
 		this.puller = puller;
 	}
-	
-	
 
 	public UserFollowsChannels getUserFollowsChannels(String user) {
 		String link = "https://api.twitch.tv/kraken/users/" + user
@@ -39,6 +37,10 @@ public class TwitchAPIPull implements TwitchAPI {
 	public ChannelsUser getChannelsUser(String user) {
 		String link = "https://api.twitch.tv/kraken/channels/" + user;
 		return this.<ChannelsUser>getPOJO(link, ChannelsUser.class);
+	}
+	
+	public String getKracken(String link){
+		return puller.PullData(link);
 	}
 
 	private <T> T getPOJO(String link, Class c) {

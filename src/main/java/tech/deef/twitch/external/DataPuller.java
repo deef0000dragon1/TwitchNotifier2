@@ -6,9 +6,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 
 public class DataPuller implements DataPull{
 
+	private final String KEY = "";
 	public String PullData(String link) {
 
 		URL url;
@@ -18,11 +20,15 @@ public class DataPuller implements DataPull{
 		
 		try {
 			url = new URL(link);
+			URLConnection c = url.openConnection();
+			c.setRequestProperty("Client-ID", KEY);
 			
-			inputStream = url.openStream(); // throws an IOException
+			inputStream = c.getInputStream(); // throws an IOException
 			bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
 			data = bufferedReader.readLine();
+			
+			System.out.println(data+"\n\n\n");
 		} catch (MalformedURLException mue) {
 			mue.printStackTrace();
 		} catch (IOException ioe) {
