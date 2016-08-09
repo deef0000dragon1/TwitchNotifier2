@@ -59,6 +59,7 @@ public class TwitchAPIPullTest {
 	@SuppressWarnings("unused")
 	@Test
 	public void testGetStreamsUserNull() {
+		
 		DataPull puller;
 		if(TEST_MODE == 0){
 			puller = new LocalPuller();

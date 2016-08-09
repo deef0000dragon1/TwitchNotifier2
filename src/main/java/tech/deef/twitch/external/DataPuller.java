@@ -18,7 +18,7 @@ public class DataPuller implements DataPull{
 	public DataPuller(){
 		Scanner scanner = null;
 		try {
-			scanner = new Scanner(new File("Files/key/key"));
+			scanner = new Scanner(new File("Files/keys/key"));
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
