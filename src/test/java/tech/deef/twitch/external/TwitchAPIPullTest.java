@@ -74,17 +74,14 @@ public class TwitchAPIPullTest {
 		assertNull(su.getStream());
 	}
 
-	@SuppressWarnings("unused")
 	@Test
 	public void testGetStreamsUser() {
 		String TestChannel = "BobRoss";
 
 		DataPull puller;
-		if(TEST_MODE == 0){
-			puller = new LocalPuller();
-		}else{
-			puller = new DataPuller();
-		}
+		//this test should always be local as the TestChannel may not always be live. 
+		puller = new LocalPuller();
+		
 		TwitchAPI pull = new TwitchAPIPull(puller);
 		
 		StreamsUser su = pull.getStreamsUser(TestChannel);
@@ -98,8 +95,7 @@ public class TwitchAPIPullTest {
 	@Test
 	public void testGetKracken() {
 
-		// WARNING This test must be tuned to the information current avaliable
-		// as such, the user in question may or may note be live.
+		//this test must be done online to confirm the key validity
 		DataPull local = new DataPuller();
 		TwitchAPI pull = new TwitchAPIPull(local);
 		String str = pull.getKracken("https://api.twitch.tv/kraken");

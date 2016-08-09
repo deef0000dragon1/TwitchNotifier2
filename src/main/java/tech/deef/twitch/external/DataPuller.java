@@ -1,16 +1,32 @@
 package tech.deef.twitch.external;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Scanner;
 
 public class DataPuller implements DataPull{
 
-	private final String KEY = "";
+	private final String KEY;
+	
+	public DataPuller(){
+		Scanner scanner = null;
+		try {
+			scanner = new Scanner(new File("Files/key/key"));
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		KEY = scanner.nextLine();
+		System.out.println(KEY);
+	}
 	public String PullData(String link) {
 
 		URL url;
