@@ -46,6 +46,7 @@ public class DataPuller implements DataPull{
 			inputStream = c.getInputStream(); // throws an IOException
 			bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
+			
 			data = bufferedReader.readLine();
 			
 		} catch (MalformedURLException mue) {
