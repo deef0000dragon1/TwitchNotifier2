@@ -27,7 +27,6 @@ public class DataPuller implements DataPull{
 			e.printStackTrace();
 		}
 		KEY = scanner.nextLine();
-		System.out.println(KEY);
 	}
 	
 	

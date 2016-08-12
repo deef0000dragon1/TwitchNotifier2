@@ -11,7 +11,7 @@ import tech.deef.twitch.external.TwitchAPIPull;
 
 public class TwitchAPIPullTest {
 	
-	//api key location https://www.twitch.tv/settings/connections
+	//api key location https://www.twitch.tv/settings/connections 
 	
 	private final int TEST_MODE = 0;
 	//0: offline
