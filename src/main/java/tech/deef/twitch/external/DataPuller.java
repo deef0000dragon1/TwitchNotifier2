@@ -48,7 +48,6 @@ public class DataPuller implements DataPull{
 
 			data = bufferedReader.readLine();
 			
-			System.out.println(data+"\n\n\n");
 		} catch (MalformedURLException mue) {
 			mue.printStackTrace();
 		} catch (IOException ioe) {
