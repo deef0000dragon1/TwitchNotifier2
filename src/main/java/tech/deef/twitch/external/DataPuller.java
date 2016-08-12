@@ -15,6 +15,8 @@ public class DataPuller implements DataPull{
 
 	private final String KEY;
 	
+	
+	
 	public DataPuller(){
 		Scanner scanner = null;
 		try {
@@ -27,6 +29,9 @@ public class DataPuller implements DataPull{
 		KEY = scanner.nextLine();
 		System.out.println(KEY);
 	}
+	
+	
+	
 	public String PullData(String link) {
 
 		URL url;
